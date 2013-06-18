@@ -18,4 +18,16 @@ partition "drp" do
     dnat  "mail.abc.com" => "mail.local"
   end
 
+  rewrite "ssh in" do
+    ports 22
+    dnat  "www.abc.com" => "app1.local"
+  end
+
+  accept "ssh between dev and qa" do
+    protocols "tcp"
+    ports     22
+    from      "dev"
+    to        "qa"
+  end
+
 end
